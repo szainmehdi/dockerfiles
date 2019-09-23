@@ -1,0 +1,23 @@
+#!/bin/bash
+TYPE=$1
+VER=$2
+
+if [ -z "$TYPE" ]
+then
+  echo "Usage: $0 type [version]"
+  exit 1;
+fi
+
+if [ -z "$VER" ]
+then
+  for dir in "$TYPE"/*; do
+    echo "[$dir] Building image..."; \
+    tag="szainmehdi/$(echo "$dir" | tr '/' ':')"; \
+    docker build "$dir" --tag "$tag" \
+      && docker push "$tag";
+  done;
+else
+  TAG="szainmehdi/$TYPE:$VER"
+  docker build "$TYPE/$VER" --tag "$TAG" \
+      && docker push "$TAG";
+fi
