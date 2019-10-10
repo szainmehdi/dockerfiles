@@ -11,13 +11,14 @@ fi
 if [ -z "$VER" ]
 then
   for dir in "$TYPE"/*; do
-    echo "[$dir] Building image..."; \
     tag="szainmehdi/$(echo "$dir" | tr '/' ':')"; \
+    echo "[$tag] Building image..."; \
     docker build "$dir" --tag "$tag" \
       && docker push "$tag";
   done;
 else
-  TAG="szainmehdi/$TYPE:$VER"
-  docker build "$TYPE/$VER" --tag "$TAG" \
-      && docker push "$TAG";
+  tag="szainmehdi/$TYPE:$VER";
+  echo "[$tag] Building image...";
+  docker build "$TYPE/$VER" --tag "$tag" \
+      && docker push "$tag";
 fi
