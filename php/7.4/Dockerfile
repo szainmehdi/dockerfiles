@@ -1,5 +1,5 @@
 # Start with PHP 7.4 Alpine Image
-FROM php:7.4.0RC1-fpm-alpine
+FROM php:7.4.0RC3-fpm-alpine
 
 # Install Extensions
 RUN docker-php-ext-install \

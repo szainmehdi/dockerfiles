@@ -1,6 +1,6 @@
 # PHP 7.4 (fpm)
 
-Based on the [official `php:7.4.0RC1-fpm-alpine` docker image](https://hub.docker.com/_/php), this adds:
+Based on the [official `php:7.4.0RC3-fpm-alpine` docker image](https://hub.docker.com/_/php), this adds:
 - PHP Extensions
     - pdo_mysql
     - bcmath
