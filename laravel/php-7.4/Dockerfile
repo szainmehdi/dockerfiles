@@ -6,7 +6,7 @@ RUN composer global require laravel/installer
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
-ENV PATH "/tmp/vendor/bin:${PATH}"
+ENV PATH "${COMPOSER_HOME}/vendor/bin:${PATH}"
 
 ENTRYPOINT ["/bin/sh", "/docker-entrypoint.sh"]
 
