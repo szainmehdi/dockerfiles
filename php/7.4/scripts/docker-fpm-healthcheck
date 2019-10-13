@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+
+# docker-fpm-healthcheck-core || exit 1;

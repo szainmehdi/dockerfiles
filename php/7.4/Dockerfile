@@ -18,3 +18,12 @@ RUN set -x \
 
 # Use the production php.ini
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+# Copy PHP-FPM config, scripts, and validate syntax.
+COPY resources/fpm/conf	/usr/local/etc/php-fpm.d/
+COPY scripts /usr/local/bin/
+
+# Chmod scripts, validate Syntax
+RUN  chmod +x /usr/local/bin/docker-fpm-* && php-fpm -t
+
+HEALTHCHECK CMD ["docker-fpm-healthcheck"]
