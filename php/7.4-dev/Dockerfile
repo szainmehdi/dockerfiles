@@ -20,6 +20,7 @@ RUN	set -x \
 # Copy over our custom xdebug INI configuration which will coexist with the automatically generated
 # $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini created by the "docker-php-ext-enable xdebug" command above.
 COPY ./resources/xdebug.ini $PHP_INI_DIR/conf.d/
+COPY ./resources/opcache.ini $PHP_INI_DIR/conf.d/
 
 # Use the development php.ini
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
