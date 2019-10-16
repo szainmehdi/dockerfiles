@@ -4,13 +4,14 @@ FROM php:7.4.0RC3-fpm-alpine
 # Install packages needed inside base image.
 RUN apk add --no-cache \
 #    # -----  Needed for Image----------------
-	fcgi tini \
+	fcgi tini postgresql-dev \
 #    # -----  Needed for PHP -----------------
     curl
 
 # Install Extensions
 RUN docker-php-ext-install \
 	pdo_mysql \
+	pdo_pgsql \
 	bcmath \
 	opcache
 

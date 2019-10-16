@@ -2,6 +2,8 @@
 TYPE=$1
 VER=$2
 
+set -e
+
 if [ -z "$TYPE" ]
 then
   echo "Usage: $0 type [version]"
