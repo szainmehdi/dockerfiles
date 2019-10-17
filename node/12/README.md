@@ -3,6 +3,7 @@
 Based on the [official `node:12.10-alpine` docker image](https://hub.docker.com/_/node), this adds:
 - `git`
 - `yarn`
+- 'vue-cli'
 
 ### Usage
 Dockerfile
