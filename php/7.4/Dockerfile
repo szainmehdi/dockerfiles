@@ -1,5 +1,5 @@
 # Start with PHP 7.4 Alpine Image
-FROM php:7.4.0RC3-fpm-alpine
+FROM php:7.4.1-fpm-alpine
 
 # Install packages needed inside base image.
 RUN apk add --no-cache \
