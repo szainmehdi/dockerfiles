@@ -1,7 +1,7 @@
 # Start from our customized PHP production image.
 FROM szainmehdi/php:7.4
 
-MAINTAINER Zain Mehdi
+LABEL AUTHOR="Zain Mehdi"
 
 # Add bash
 RUN apk --no-cache add bash
