@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+
+OPCACHE_INI=/usr/local/etc/php/conf.d/disable-opcache.ini
+XDEBUG_INI=/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+XDEBUG_INI_SUPPL=/usr/local/etc/php/conf.d/xdebug.ini
+
+# Enable opcache for production
+if [ "$APP_ENV" == "production" ]; then
+  if [ -f "$OPCACHE_INI" ]; then
+    mv "$OPCACHE_INI" "$OPCACHE_INI.disabled"
+  fi
+  echo "[FPM] Enabling opcache for production.";
+else
+  if [ -f "$OPCACHE_INI.disabled" ]; then
+    mv "$OPCACHE_INI.disabled" "$OPCACHE_INI"
+  fi
+fi
+
+# Enable xdebug if XDEBUG_ENABLE=true
+if [ "$XDEBUG_ENABLE" == "true" ]; then
+  if [ -f "$XDEBUG_INI.disabled" ]; then
+    mv "$XDEBUG_INI.disabled" "$XDEBUG_INI"
+  fi
+
+  if [ -f "$XDEBUG_INI_SUPPL.disabled" ]; then
+    mv "$XDEBUG_INI_SUPPL.disabled" "$XDEBUG_INI_SUPPL"
+  fi
+  echo "[FPM] Enabling Xdebug";
+else
+  if [ -f "$XDEBUG_INI" ]; then
+    mv "$XDEBUG_INI" "$XDEBUG_INI.disabled"
+  fi
+
+  if [ -f "$XDEBUG_INI_SUPPL" ]; then
+    mv "$XDEBUG_INI_SUPPL" "$XDEBUG_INI_SUPPL.disabled"
+  fi
+fi
+
+exec "$@"
