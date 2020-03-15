@@ -75,6 +75,9 @@ COPY resources/fpm/conf	/usr/local/etc/php-fpm.d/
 COPY resources/php.ini/xdebug.ini $PHP_INI_DIR/conf.d/
 COPY resources/php.ini/disable-opcache.ini $PHP_INI_DIR/conf.d/
 
+# Handle file uploads.
+COPY resources/php.ini/uploads.ini $PHP_INI_DIR/conf.d/
+
 # For opcache and xdebug, we'll start the image with the extensions disabled, and then enable it in the entrypoint.
 RUN mv $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini.disabled \
 	&& mv $PHP_INI_DIR/conf.d/xdebug.ini $PHP_INI_DIR/conf.d/xdebug.ini.disabled;

@@ -4,8 +4,8 @@ OPCACHE_INI=/usr/local/etc/php/conf.d/disable-opcache.ini
 XDEBUG_INI=/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 XDEBUG_INI_SUPPL=/usr/local/etc/php/conf.d/xdebug.ini
 
-# Enable opcache for production
-if [ "$APP_ENV" == "production" ]; then
+# Enable opcache for local
+if [ "$APP_ENV" != "local" ]; then
   if [ -f "$OPCACHE_INI" ]; then
     mv "$OPCACHE_INI" "$OPCACHE_INI.disabled"
   fi
