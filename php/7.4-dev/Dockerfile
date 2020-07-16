@@ -39,12 +39,9 @@ RUN set -x \
 		| awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
 		)" \
 	&& apk add --no-cache --virtual .composer-phpext-rundeps $runDeps \
-	&& apk del .build-deps \
-	&& printf "# composer php cli ini settings\n\
-	date.timezone=UTC\n\
-	memory_limit=-1\n\
-	opcache.enable_cli=1\n\
-	" > $PHP_INI_DIR/php-cli.ini
+	&& apk del .build-deps
+
+COPY ./resources/composer.ini $PHP_INI_DIR/conf.d/
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
