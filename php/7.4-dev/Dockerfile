@@ -10,7 +10,7 @@ RUN apk --no-cache add bash
 RUN	set -x \
 	&& apk --no-cache add pcre-dev ${PHPIZE_DEPS} \
 	&& pecl install \
-		 xdebug-2.9.4 \
+		 xdebug-2.9.6 \
 		 ast \
 	&& docker-php-ext-enable \
 		 xdebug \
@@ -44,8 +44,7 @@ RUN set -x \
 	date.timezone=UTC\n\
 	memory_limit=-1\n\
 	opcache.enable_cli=1\n\
-	" > $PHP_INI_DIR/php-cli.ini \
-	&& composer global require hirak/prestissimo
+	" > $PHP_INI_DIR/php-cli.ini
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp

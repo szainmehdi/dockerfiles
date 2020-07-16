@@ -1,6 +1,6 @@
 # PHP 7.4 (fpm)
 
-Based on the [official `php:7.4.0RC3-fpm-alpine` docker image](https://hub.docker.com/_/php), this adds:
+Based on the [official `php:7.4-fpm-alpine` docker image](https://hub.docker.com/_/php), this adds:
 - PHP Extensions
     - pdo_mysql
     - bcmath
@@ -29,4 +29,4 @@ Copy additional `.ini` files to the `$PHP_INI_DIR/conf.d/` directory in your cus
 FROM szainmehdi/php:7.4
 
 COPY /path/to/custom.ini $PHP_INI_DIR/conf.d/
-``` 
+```
