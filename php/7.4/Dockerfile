@@ -27,6 +27,7 @@ RUN apk update && apk add --no-cache --virtual buildDeps \
 		pdo_pgsql \
 		bcmath \
 		opcache \
+		pcntl \
 		gd \
 	&& pecl install -o -f \
 		redis \
