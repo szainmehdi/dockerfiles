@@ -3,6 +3,8 @@ FROM szainmehdi/php:7.4
 
 LABEL AUTHOR="Zain Mehdi"
 
+ENV COMPOSER_VERSION 2.0.0-alpha3
+
 # Add bash
 RUN apk --no-cache add bash
 
@@ -27,7 +29,7 @@ RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 # Install composer
 RUN set -x \
-	&& curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+	&& curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=$COMPOSER_VERSION \
 	&& apk add --no-cache --virtual .composer-rundeps git subversion openssh-client mercurial tini bash patch make zip unzip coreutils \
 	&& apk add --no-cache --virtual .build-deps zlib-dev libzip-dev \
 	&& docker-php-ext-configure zip \
@@ -44,4 +46,4 @@ RUN set -x \
 COPY ./resources/composer.ini $PHP_INI_DIR/conf.d/
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
-ENV COMPOSER_HOME /tmp
+ENV COMPOSER_HOME /tmp/.composer
