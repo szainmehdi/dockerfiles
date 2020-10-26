@@ -3,7 +3,7 @@ FROM szainmehdi/php:7.4
 
 LABEL AUTHOR="Zain Mehdi"
 
-ENV COMPOSER_VERSION 2.0.0-alpha3
+ENV COMPOSER_VERSION 2.0.2
 
 # Add bash
 RUN apk --no-cache add bash
@@ -12,7 +12,7 @@ RUN apk --no-cache add bash
 RUN	set -x \
 	&& apk --no-cache add pcre-dev ${PHPIZE_DEPS} \
 	&& pecl install \
-		 xdebug-2.9.6 \
+		 xdebug-3.0.0beta1 \
 		 ast \
 	&& docker-php-ext-enable \
 		 xdebug \
