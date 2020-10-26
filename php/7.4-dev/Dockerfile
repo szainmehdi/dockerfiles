@@ -12,7 +12,7 @@ RUN apk --no-cache add bash
 RUN	set -x \
 	&& apk --no-cache add pcre-dev ${PHPIZE_DEPS} \
 	&& pecl install \
-		 xdebug-3.0.0beta1 \
+		 xdebug-2.9.8 \
 		 ast \
 	&& docker-php-ext-enable \
 		 xdebug \
