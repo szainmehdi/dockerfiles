@@ -1,8 +1,31 @@
 #!/bin/bash
+
+PUSH=0
+
+while getopts ":p" OPTION; do
+    case $OPTION in
+    p)
+        PUSH=1
+        shift 1;
+        ;;
+    *)
+        echo "Incorrect options provided"
+        exit 1
+        ;;
+    esac
+done
+
 TYPE=$1
 VER=$2
 
 set -e
+
+if [ $PUSH == 0 ];
+then
+  echo "Push disabled...";
+else
+  echo "Push enabled...";
+fi;
 
 if [ -z "$TYPE" ]
 then
@@ -10,17 +33,28 @@ then
   exit 1;
 fi
 
+function build {
+  echo "[$2] Building image...";
+
+  if docker build "$1" --tag "$2";
+  then
+    if [ $PUSH == 1 ];
+    then
+      echo "[$2] Pushing image...";
+      docker push "$2"
+    fi
+  fi
+}
+
 if [ -z "$VER" ]
 then
   for dir in "$TYPE"/*; do
     tag="szainmehdi/$(echo "$dir" | tr '/' ':')"; \
-    echo "[$tag] Building image..."; \
-    docker build "$dir" --tag "$tag" \
-      && docker push "$tag";
+    build "$dir" "$tag";
   done;
 else
   tag="szainmehdi/$TYPE:$VER";
-  echo "[$tag] Building image...";
-  docker build "$TYPE/$VER" --tag "$tag" \
-      && docker push "$tag";
+  build "$TYPE/$VER" "$tag"
 fi
+
+echo "Done!";
