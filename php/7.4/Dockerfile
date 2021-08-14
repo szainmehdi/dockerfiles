@@ -1,5 +1,5 @@
 # Start with PHP 7.4 Alpine Image
-FROM php:7.4.11-fpm-alpine
+FROM php:7.4.22-fpm-alpine
 
 # Install Common Utilities
 RUN apk add --no-cache --update \

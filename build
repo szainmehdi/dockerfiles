@@ -36,12 +36,15 @@ fi
 function build {
   echo "[$2] Building image...";
 
-  if docker build "$1" --tag "$2";
+  date=$(date '+%Y%m%d')
+
+  if docker build "$1" --tag "$2" --tag "${2}-${date}";
   then
     if [ $PUSH == 1 ];
     then
       echo "[$2] Pushing image...";
       docker push "$2"
+      docker push "${2}-${date}"
     fi
   fi
 }
@@ -57,4 +60,4 @@ else
   build "$TYPE/$VER" "$tag"
 fi
 
-echo "Done!";
+echo "Done!"
