@@ -44,9 +44,9 @@ RUN echo "[Build] Installing PostgreSQL extension..." \
 		pdo_pgsql \
 		> /dev/null
 
-ENV EXT_APCU_VERSION=5.1.21
-ENV EXT_REDIS_VERSION=5.3.4
-ENV EXT_IGBINARY_VERSION=3.2.6
+ENV EXT_APCU_VERSION=5.1.22
+ENV EXT_REDIS_VERSION=5.3.7
+ENV EXT_IGBINARY_VERSION=3.2.14
 
 RUN echo "[Build] Installing PHP Redis extension..." \
 	&& docker-php-source extract > /dev/null \

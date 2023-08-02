@@ -3,8 +3,8 @@ FROM szainmehdi/php:8.1
 
 LABEL AUTHOR="Zain Mehdi"
 
-ENV COMPOSER_VERSION 2.1.14
-ENV EXT_XDEBUG_VERSION 3.1.1
+ENV COMPOSER_VERSION 2.5.8
+ENV EXT_XDEBUG_VERSION 3.2.2
 
 ########################################################################
 # Install Composer
