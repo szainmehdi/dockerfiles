@@ -1,6 +1,6 @@
-# Node 12.10
+# Node 13
 
-Based on the [official `node:12.10-alpine` docker image](https://hub.docker.com/_/node), this adds:
+Based on the [official `node:13-alpine` docker image](https://hub.docker.com/_/node), this adds:
 - `git`
 - `yarn`
 - 'vue-cli'
@@ -8,10 +8,10 @@ Based on the [official `node:12.10-alpine` docker image](https://hub.docker.com/
 ### Usage
 Dockerfile
 ```dockerfile
-FROM szainmehdi/node:12.10
+FROM szainmehdi/node:13
 ```
 
 Docker Compose
 ```yaml
-image: szainmehdi/node:12.10
+image: szainmehdi/node:13
 ```
