@@ -38,13 +38,12 @@ function build {
 
   date=$(date '+%Y%m%d')
 
-  if docker build "$1" --tag "$2" --tag "${2}-${date}";
+  if docker buildx build "$1" --tag "$2" --tag "${2}-${date}";
   then
     if [ $PUSH == 1 ];
     then
       echo "[$2] Pushing image...";
-      docker push "$2"
-      docker push "${2}-${date}"
+      docker buildx build "$1" --tag "$2" --tag "${2}-${date}" --platform linux/arm64/v8,linux/amd64 --push
     fi
   fi
 }

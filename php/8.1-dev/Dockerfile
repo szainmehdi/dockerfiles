@@ -40,13 +40,10 @@ ENV COMPOSER_HOME /tmp/.composer
 # Install XDebug Extensions
 ########################################################################
 RUN echo "[Build] Installing Xdebug ${EXT_XDEBUG_VERSION}..." \
-	&& docker-php-source extract > /dev/null \
-    # ext-xdebug
-    && mkdir -p /usr/src/php/ext/xdebug \
-    && curl -fsSL https://xdebug.org/files/xdebug-${EXT_XDEBUG_VERSION}.tgz | tar xvz -C /usr/src/php/ext/xdebug --strip 1 \
-    && docker-php-ext-install xdebug  > /dev/null  \
-    ## cleanup
-    && docker-php-source delete > /dev/null
+	&& apk add --no-cache --virtual .build-deps  pcre-dev linux-headers ${PHPIZE_DEPS} \
+	&& pecl install xdebug-$EXT_XDEBUG_VERSION \
+	&& docker-php-ext-enable xdebug \
+	&& apk del .build-deps
 
 # Copy over our custom xdebug INI configuration which will coexist with the automatically generated
 # $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini created by the "docker-php-ext-enable xdebug" command above.
